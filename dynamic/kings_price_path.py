@@ -19,17 +19,17 @@ def price(A):
     return B
 
 
-def get_solution(B, i, j):
+def get_solution(A, B, i, j):
     if i==0 and j==0:
-        return [0,0]
-    if i>=1 and j>=1 and B[i][j-1] < B[i][j-1]:
-        return get_solution(B, i, j-1) + [i, j]
-    if i==0:
-        return get_solution(B, i, j-1) + [i,j]
-    if j==0:
-        return get_solution(B, i-1, j) + [i,j]
+        return [[0,0]]
+    if i > 0 and B[i][j] == B[i-1][j] + A[i][j]:
+        return get_solution(A, B, i-1, j) + [[i,j]]
+    if j > 0 and B[i][j] == B[i][j-1] + A[i][j]:
+        return get_solution(A, B, i, j-1) + [[i,j]]
 
 if __name__ == '__main__':
     A = [[1, 1, 2],
          [5, 1, 3],
          [4, 1, 1]]
+    B = price(A)
+    print(get_solution(A,B,2,2))
