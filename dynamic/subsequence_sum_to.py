@@ -22,7 +22,7 @@ def ssl(A, t):
 
     for i in range(n): #iteruję po kolejnych elementach w A i wpisuję ich wartosci
         if A[i] <= t:
-            F[i][A[i]] = A[i]
+            F[i][ A[i] ] = A[i]
 
     for i in range(1,n): #iteruję po kolejnych wierszach
         for j in range(1,t+1): #iteruję po kolejnych kolumnach
@@ -45,17 +45,16 @@ def get_solution(A, F, i, j):
 
 if __name__ == '__main__':
     A = [1,1,1,5,2]
-    t = 6
+    t = 10
 
-    res, F, i = ssl(A, t)
-    for e in F:
-        for e2 in e:
-            print(e2, end="\t")
-        print()
-    print(get_solution(A,F, i, t))
+    # res, F, i = ssl(A, t)
+    # for e in F:
+    #     for e2 in e:
+    #         print(e2, end="\t")
+    #     print()
+    # print(get_solution(A,F, i, t))
 
 
-    exit()
     #test section
     for i in range(1000):
         A = [random.randint(1,50) for _ in range(30)]

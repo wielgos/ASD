@@ -1,5 +1,10 @@
 # Mikołaj Wielgos
 '''
+Drobna uwaga: Cały kod implementowałem, by wypisywać ciągi w kolejności zgodnej z tablicą (tj. tak jak na przykładzie
+z pdf) - linie 66-69, 32-33 są niepotrzebnymi zmianami - jak się okazało (godzinę przed deadlinem - mail
+prof. Faliszewskiego) - nie jest to konieczne. Kodu postanowiłem już nie zmieniać, ponieważ bałem się że nie zdążę
+poprawić rozwiązania.
+--
 Znajduje, zlicza, i wypisuje w odpowiedniej kolejności najdłuższe ciągi rosnące (longest increasing subsequences)
 O(n^2)
 Poszczególne opisy funkcji znajdują się już wewnątrz printAllLIS()
@@ -58,6 +63,8 @@ def printAllLIS(A):
             i = len(P[s]) - 1
             while i >= 1 and P[s][i][1] == P[s][i - 1][1]:  # sprawdza wszystkie możliwe skoki z danego indeksu
                 i -= 1  # skok z itego miejsca jest możliwy, więc cofam się i sprawdzam dalej
+            #pętla niżej zapewnia mi kolejnośc wypisywania zgodnie z kolejnością elementów w tablicy
+            #jest zbędna jeżeli nie zależy nam na kolejności
             for j in range(i, len(P[s])):  # będę skakać od i do końca P[s] By zachować kolejność przy wypisywaniu
                 recursiveprint(A, P, P[s][j][0], maxF, out, index + 1)
 
@@ -69,7 +76,7 @@ def printAllLIS(A):
         :param P: tablica parentów
         :param indexF: indeksy zakończeń podciągów
         :param maxF: długość LIS'a
-        :return:
+        :return: ilość wszystkich LIS'ów
         '''
         i = len(indexF) - 1  # ustawiam i na koniec tablicy indexF
         recursiveprint(A, P, indexF[i], maxF,
@@ -85,9 +92,3 @@ def printAllLIS(A):
     maxF, indexF, P, F = lis_upgraded(A)  # zbieram dane by móc zacząć wypisywać
     printAllSolutions(A, P, indexF, maxF)  # wypisuję
     return counter  # zwracam licznik wszystkich LIS'ów
-
-
-if __name__ == '__main__':
-    A = [10 * k + i for k in range(8) for i in range(6, 0, -1)]
-    print(printAllLIS(A)) #wynik to 1679616
-    pass

@@ -31,13 +31,14 @@ def lis(A):
     return P, M[L], L #previous_elements, last index of LIS, length of LIS
 
 def printsolution(A, P, i):
-    while i!=-1:
-        print(A[i], end=" ")
-        i = P[i]
+    if i ==-1
+    while True:
+        printsolution(A, P, P[i])
+    print(A[i], end=" ")
 
 if __name__ == '__main__':
     A = [13, 7, 21, 42, 8, 2, 44, 53]
     P, index, length = lis(A)
     print(P, index, length)
-    printsolution(A,P,index)
+    #printsolution(A,P,index)
     pass
