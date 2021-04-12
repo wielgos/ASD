@@ -1,7 +1,9 @@
 /.idea
-main.py
 info.txt
 testy.py
+main.py
+main2.py
+main3.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
