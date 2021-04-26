@@ -1,5 +1,5 @@
 # Mikołaj Wielgos 29.03.2021
-from colosses.zad3testy import runtests
+from work_in_progress.zad3testy import runtests
 
 '''
 Algorytm wykorzystuje bucketsort do sortowania poszczególnych elementów
