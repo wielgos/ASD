@@ -1,46 +1,27 @@
 from collections import deque
 
-
-class GraphNode:
-    def __init__(self):
-        self.adj = deque()  # listy sąsiedztwa
-        self.d = None
-        self.visited = None
-        self.parent = None
-
-    def __repr__(self):
-        return f"GraphNode[adj{self.adj}, d{self.d}, visited{self.visited}, parent{self.parent}]"
-
-
-def BFS(G, s):  # G is a list of GraphNodes, s is starting vertex
-
+def BFS(G, s):  # G to macierz sąsiedztwa
     n = len(G)
-    GR = [0] * n
-    for i in range(n):
-        v = GraphNode()
-        v.visited = False
-        v.d = -1
-        v.parent = None
-
-        for j in range(n):
-            if G[i][j] == 1:
-                v.adj.append(j)
-
-        GR[i] = v
 
     Q = deque()
-    GR[s].d = 0
-    GR[s].visited = True
-    Q.append(s)  # we put index of vertex, to get data we use G[s]
+    visited = [False]*n
+    d = [-1]*n
+    parent = [-1]*n
+
+    d[s] = 0
+    visited[s] = True
+    Q.append(s)
+
     while Q:  # if deque is not empty
         u = Q.pop()
-        while GR[u].adj:
-            v = GR[u].adj.pop()
-            if not GR[v].visited:
-                GR[v].visited = True
-                GR[v].d = GR[u].d + 1
-                GR[v].parent = u
-                Q.append(v)
+        for v in range(n):
+            if G[u][v] == 1:
+                if not visited[v]:
+                    visited[v] = True
+                    d[v] = d[u] + 1
+                    parent[v] = u
+                    Q.append(v)
+    return visited, d, parent
 
 
 def createadjmatrix(L):  # stworz macierz sąsiedztwa bazując na liscie krawedzi
@@ -66,4 +47,7 @@ if __name__ == '__main__':
     LADJ = [[1, 2, 3], [0, 4], [0, 4, 5], [0, 5, 4], [1, 2, 3], [2, 3]]
     # LADJ to listy sąsiedztwa
     print()
-    BFS(M, 0)
+    v, d , p = BFS(M, 0)
+    print(v)
+    print(d)
+    print(p)
