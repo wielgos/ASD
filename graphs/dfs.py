@@ -37,7 +37,7 @@ def DFS(G):
         if not visited[u]:
             DFSvisit(G, u)
 
-    return visited, parent, entry
+    return visited, parent, entry, process
 
 
 def createadjmatrix(L):  # stworz macierz sąsiedztwa bazując na liscie krawedzi
@@ -58,7 +58,8 @@ if __name__ == "__main__":
     # L to lista krawędzi
 
     G = createadjmatrix(L)
-    v, p, e = DFS(G)
+    v, p, e, pr = DFS(G)
     print(v)
     print(p)
     print(e)
+    print(pr)
