@@ -36,7 +36,7 @@ def euler(G):
 
         if deg[u] % 2 == 1:  # jezeli po przetworzeniu wierzcholka ma on stopien nieparzysty
             non_euler = True  # to wiem ze graf nie jest eulerowski
-        cycle.append(u)  # dodaję na początek kolejki z cyklem przetworzony wierzcholek 'u' O(1)
+        cycle.append(u)  # dodaję do kolejki z cyklem przetworzony wierzcholek 'u' O(1)
 
     n = len(G)
     deg = [0] * n  # lista z stopniami wierzcholkow
