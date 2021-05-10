@@ -1,10 +1,8 @@
-# Mikołaj Wielgos
-# Algorytm wyszukujący ścieżke Eulera, bazowałem na wykładzie i 2 krokach ->
-# 1. wykonaj zwykły DFS
-# 2. na bieżąco usuwaj krawędzie po których chodzisz, i po przetworzeniu wierzchołka dodaj go na początek listy
-# W algorytmie dodatkowo na bieżąco liczę sobie stopnie wierzchołków, przez co, gdy po przetworzeniu będzie on miał nieparzysty stopień,
-# to wiem, że nie może mieć cyklu Eulera. Dodatkowo, jeżeli okaże się, że graf jest niespójny (jednym dfsvisit nie odwiedzę każdego wierzchołka),
-# to również nie może być eulerowski.
+# Mikołaj Wielgos Algorytm wyszukujący ścieżke Eulera, bazowałem na wykładzie i 2 krokach -> 1. wykonaj zwykły DFS 2.
+# na bieżąco usuwaj krawędzie po których chodzisz, i po przetworzeniu wierzchołka dodaj go na początek listy W
+# algorytmie dodatkowo na bieżąco liczę sobie stopnie wierzchołków, przez co, gdy po przetworzeniu będzie on miał
+# nieparzysty stopień, to wiem, że nie może mieć cyklu Eulera. Dodatkowo, jeżeli okaże się, że graf jest niespójny
+# ( jednym dfsvisit nie odwiedzę każdego wierzchołka), to również nie może być eulerowski.
 
 from copy import deepcopy
 
@@ -49,6 +47,7 @@ def euler(G):
     if non_euler:
         return None  # none bo był nieeulerowski
     else:
+        print(cycle)
         return cycle  # zwracamy dany cykl
 
 
