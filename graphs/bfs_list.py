@@ -1,12 +1,13 @@
 from collections import deque
 
+
 def BFS(G, s):  # G to macierz sąsiedztwa
     n = len(G)
 
     Q = deque()
-    visited = [False]*n
-    d = [-1]*n
-    parent = [-1]*n
+    visited = [False] * n
+    d = [-1] * n
+    parent = [-1] * n
 
     d[s] = 0
     visited[s] = True
@@ -47,7 +48,7 @@ if __name__ == '__main__':
     LADJ = [[1, 2, 3], [0, 4], [0, 4, 5], [0, 5, 4], [1, 2, 3], [2, 3]]
     # LADJ to listy sąsiedztwa
     print()
-    v, d , p = BFS(M, 0)
+    v, d, p = BFS(M, 0)
     print(v)
     print(d)
     print(p)

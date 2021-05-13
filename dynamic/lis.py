@@ -20,10 +20,12 @@ def lis(A):
                     indexF = i
     return maxF, indexF, P
 
-def printsolution(A, P, i): #start by putting i=indexF
+
+def printsolution(A, P, i):  # start by putting i=indexF
     if P[i] != -1:
         printsolution(A, P, P[i])
     print(A[i], end=" ")
+
 
 if __name__ == '__main__':
     A = [13, 7, 21, 42, 8, 2, 44, 53]

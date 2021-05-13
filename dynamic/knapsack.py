@@ -26,7 +26,7 @@ def get_solution(F, W, P, i, w):
     if i == 0:
         if w >= W[0]: return [0]  # jezeli jestem na ostatnim przedmiocie i moge go wziac, to oczywiste ze go biorę
         return []  # nie mialem wagi więc nie biorę
-    if w >= W[i] and F[i][w] == F[i - 1][w - W[i]] + P[i]: #to znaczy ze dany przedmiot wzialem
+    if w >= W[i] and F[i][w] == F[i - 1][w - W[i]] + P[i]:  # to znaczy ze dany przedmiot wzialem
         return get_solution(F, W, P, i - 1, w - W[i]) + [i]  # +[i] bo ity przedmiot wzialem jak sie okazalo
     return get_solution(F, W, P, i - 1, w)  # nie wzialem wiec waga zostaje taka sama
 

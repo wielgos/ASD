@@ -63,8 +63,8 @@ def printAllLIS(A):
             i = len(P[s]) - 1
             while i >= 1 and P[s][i][1] == P[s][i - 1][1]:  # sprawdza wszystkie możliwe skoki z danego indeksu
                 i -= 1  # skok z itego miejsca jest możliwy, więc cofam się i sprawdzam dalej
-            #pętla niżej zapewnia mi kolejnośc wypisywania zgodnie z kolejnością elementów w tablicy
-            #jest zbędna jeżeli nie zależy nam na kolejności
+            # pętla niżej zapewnia mi kolejnośc wypisywania zgodnie z kolejnością elementów w tablicy
+            # jest zbędna jeżeli nie zależy nam na kolejności
             for j in range(i, len(P[s])):  # będę skakać od i do końca P[s] By zachować kolejność przy wypisywaniu
                 recursiveprint(A, P, P[s][j][0], maxF, out, index + 1)
 

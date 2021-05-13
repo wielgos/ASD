@@ -4,6 +4,7 @@ def bubble_sort(t):
             if t[j] > t[j + 1]:
                 t[j + 1], t[j] = t[j], t[j + 1]
 
+
 if __name__ == '__main__':
     numbers = [8, 19, 11, 4, 21, 22, 7]
     bubble_sort(numbers)

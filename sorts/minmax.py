@@ -1,6 +1,8 @@
 """
 minmax
 """
+
+
 def minmax(l):
     # rozpatruję pierwsze elementy żeby miec co porownywac dalej
 
@@ -24,12 +26,14 @@ def minmax(l):
                 max_l = l[x + 1]
     return min_l, max_l
 
+
 def getmax(A):
     max = A[0]
-    for i in range(1,len(A)):
-        if A[i]>max:
+    for i in range(1, len(A)):
+        if A[i] > max:
             max = A[i]
     return max
+
 
 if __name__ == '__main__':
     pass

@@ -1,6 +1,7 @@
 from collections import deque
 
-#normalnie o(n^3)
+
+# normalnie o(n^3)
 
 def cycle4(G):
     n = len(G)
@@ -15,7 +16,7 @@ def cycle4(G):
 
     for i in range(n):
         # print("entering with:", i)
-        while len(neigh[i]) >= 2: #normalnie sprawdz wszystkie pary, tu jest źle
+        while len(neigh[i]) >= 2:  # normalnie sprawdz wszystkie pary, tu jest źle
             j = neigh[i].pop()
             k = neigh[i].pop()
             # print(j, k)
@@ -74,6 +75,6 @@ G6 = [[0, 1, 0, 0, 0, 0, 1, 1],
       [0, 0, 0, 0, 0, 0, 1, 0],
       [0, 1, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 1, 0, 0],
-      [1, 0, 0, 0, 0, 0, 0, 0],]
+      [1, 0, 0, 0, 0, 0, 0, 0], ]
 
 cycle4(G6)

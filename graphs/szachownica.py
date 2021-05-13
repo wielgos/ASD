@@ -27,10 +27,9 @@ class GraphNode:
 
 def szachownica(G):
     n = len(G)
-    GR = [0] * (n * n)
+    GR = [GraphNode() for _ in range(n * n)]
     for i in range(n):
         for j in range(n):
-            GR[c(i, j, n)] = GraphNode()
             GR[c(i, j, n)].neigh = gen_neigh(i, j, n)
             GR[c(i, j, n)].value = 0
             print(i, j, GR[c(i, j, n)].neigh)

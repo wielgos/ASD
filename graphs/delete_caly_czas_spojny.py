@@ -30,7 +30,7 @@ def DFS(G):
             if G[i][j] == 1:
                 V[i].neigh.append(j)
 
-    DFSvisit(V, 0) # bo jest spojny
+    DFSvisit(V, 0)  # bo jest spojny
     while order:
         print(order.popleft(), end=" ")
 

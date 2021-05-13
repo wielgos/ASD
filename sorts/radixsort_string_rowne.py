@@ -6,6 +6,7 @@ gdzie: d - ilość znaków w każdym słowie
        n - liczba słów
 """
 
+
 def SortOnPosString(A, pos):  # sortuje A, ktora jest 2-wym, pos to index wg którego sortujemy
     n = len(A)
     dig = [0] * (58)  # 26 liter małych i 26 liter wielkich
@@ -19,18 +20,20 @@ def SortOnPosString(A, pos):  # sortuje A, ktora jest 2-wym, pos to index wg kt�
 
     for i in range(n - 1, -1, -1):
         dig[ord(A[i][pos]) - ord('A')] -= 1
-        res[dig[ord(A[i][pos]) - ord('A')]] = A[i] #przepisuję do res
+        res[dig[ord(A[i][pos]) - ord('A')]] = A[i]  # przepisuję do res
 
     for i in range(n):  # przepisuję wartosci do A
         A[i] = res[i]
 
-def radixsortstring(A): #moze sortowac podtablice ze stringami róznych dlugosci
+
+def radixsortstring(A):  # moze sortowac podtablice ze stringami róznych dlugosci
     max_len = len(A[0])
 
     for i in range(max_len - 1, -1, -1):
         SortOnPosString(A, i)
 
+
 if __name__ == '__main__':
-    C = ["abz","abc","ABC"]
+    C = ["abz", "abc", "ABC"]
     radixsortstring(C)
     print(C)

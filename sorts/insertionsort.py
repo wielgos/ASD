@@ -2,6 +2,7 @@
 insertion sort
 '''
 
+
 def insertionsort(T):
     i = 1
     n = len(T)

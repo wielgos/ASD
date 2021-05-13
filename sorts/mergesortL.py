@@ -112,6 +112,3 @@ print_list(lst)
 merge_sort_list(lst)
 print(time() - start)
 print_list(lst)
-
-
-

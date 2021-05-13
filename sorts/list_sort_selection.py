@@ -3,6 +3,7 @@ class node:
         self.v = v
         self.next = next
 
+
 def linsert(head, v):
     if head is None or v < head.v:
         new_head = node(v, head)
