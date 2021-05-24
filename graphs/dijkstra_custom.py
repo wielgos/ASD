@@ -68,7 +68,7 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
     d[s] = 0
     minh = MinHeap(n)
     for i in range(n):
-        minh.put([float('inf'), i])
+        minh.put([d[i], i])
 
     while minh.size != 0:
         u = minh.pop()
