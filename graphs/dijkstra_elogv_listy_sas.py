@@ -56,9 +56,9 @@ class MinHeap:  # [key, value]
 
 
 def dijkstra(G, s):  # G to macierz sąsiedztwa
-    def relax(u, v):
-        if d[v] > d[u] + G[u][v]:
-            d[v] = d[u] + G[u][v]
+    def relax(u, v, w):
+        if d[v] > d[u] + w:
+            d[v] = d[u] + w
             parent[v] = u
 
     n = len(G)
@@ -72,10 +72,9 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
 
     while minh.size != 0:
         u = minh.pop()
-        for v in range(n):
-            if G[u][v] > 0:
-                relax(u, v)
-                minh.change_key(v, d[v])
+        for v, w in G[u]:
+            relax(u, v, w)
+            minh.change_key(v, d[v])
     return d, parent
 
 
@@ -106,7 +105,6 @@ if __name__ == '__main__':
          [0, 0, 0, 1, 0, 1, 0],
          [0, 0, 0, 0, 1, 0, 1],
          [1, 0, 0, 0, 0, 1, 0]]
-
     G2 = [[0, 2, 4],
           [2, 0, 1],
           [4, 1, 0]]
@@ -115,8 +113,11 @@ if __name__ == '__main__':
           [2, 0, 1, 0],
           [4, 1, 0, 0],
           [0, 0, 0, 0]]
-
-    d, p = dijkstra(G3, 0)
+    G4 = [[(1, 2), (2, 4)],
+          [(0, 2), (2, 1)],
+          [(0, 4), (1, 1)]
+          ]
+    d, p = dijkstra(G4, 0)
     print(d)
     print(p)
     print(path(p, 1))
