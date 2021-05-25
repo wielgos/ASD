@@ -32,13 +32,6 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
         done[u] = True
     return d, parent
 
-
-def pathrec(parent, s):
-    if s is not None:
-        pathrec(parent, parent[s])
-        print(s, end=" ")
-
-
 def path(parent, s):
     path = deque()
     len = 0

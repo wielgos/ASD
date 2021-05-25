@@ -10,9 +10,7 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
             parent[v] = u
 
     n = len(G)
-
     d = [float('inf')] * n
-
     parent = [None] * n
     visited = [False] * n
     d[s] = 0
@@ -29,12 +27,6 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
             if G[u][v] > 0 and not visited[v]:
                 relax(u, v)
     return d, parent
-
-
-def pathrec(parent, s):
-    if s is not None:
-        pathrec(parent, parent[s])
-        print(s, end=" ")
 
 
 def path(parent, s):
