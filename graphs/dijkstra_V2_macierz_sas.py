@@ -22,6 +22,8 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
             if not visited[j] and d[j] <= d_best:
                 u = j
                 d_best = d[j]
+
+
         visited[u] = True
         for v in range(n):
             if G[u][v] > 0 and not visited[v]:
@@ -63,7 +65,7 @@ if __name__ == '__main__':
           [6, 0, 6, 0],
           [0, 6, 0, 6],
           [0, 0, 6, 0]]
-    d, p = dijkstra(G4, 0)
+    d, p = dijkstra(G2, 0)
     print(d)
     print(p)
     print(path(p, 1))

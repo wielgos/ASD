@@ -2,7 +2,7 @@ from queue import PriorityQueue
 from collections import deque
 
 
-# E LOG V
+# V^2 LOG V
 # more precise: Elog(E), but log(E) is the same as log(V) in big O
 # slower by constant because of lacking decrease-key operation
 
@@ -20,7 +20,9 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
     parent = [None] * n
     done = [False] * n
     d[s] = 0
-    Q.put((d[s], s))
+
+    for i in range(n):
+        Q.put((d[s], s))
 
     while not Q.empty():
         trash, u = Q.get()

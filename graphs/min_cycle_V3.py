@@ -4,6 +4,17 @@
 # Napotkam wierzchołek j , który już ma odległość policzoną, to wiem, że mogę dokonać trasy źródło - j - i - źródło
 # I to będzie mój cykl o wartości d[i] + d[j] + G[i][j]. Wartość takiego cyklu zliczam i obliczam trasę, jeżeli znajdę
 # lepszy, to podmieniam itd.
+# Dodatkowo wymagana była modyfikacja, co do wyboru cyklu, wybieramy najkrótszy z tych z najniższą policzoną wagą,
+# a jako że wagi mamy nieujemne, to przez to unikniemy sytuacji w których wybralibyśmy zły cykl dla np. takiego grafu:
+#                            3
+#                            o
+#   0         1           2/   \
+#   o - - - - o - - - - - o     o 4
+#                          \   /
+#                            o
+#                            5
+# Bez tej modyfikacji, jeżeli dla 0,1 i 1,2 wagi wynosiłyby 0, to algorytm zwróciłby cykl 0,1,2,3,4,5,2,1
+# Natomiast po modyfikacji zwróci poprawny 2,3,4,5
 # Złożoność Dijkstry to V^2 - wersja zoptymalizowana dla macierzy z "kolejką" jako tablicą odległości.
 # Więc całkowita złożoność algorytmu to O(V^3) [ dla każdego wierzchołka Dijkstra ]
 
@@ -31,7 +42,7 @@ def min_cycle(G):
         return pathL
 
     def dijkstra(G, s):  # G to macierz sąsiedztwa
-        nonlocal min_val, end_path
+        nonlocal min_val, end_path, min_len
 
         # inicjalizacja początkowych zmiennych dla Dijkstry
         n = len(G)
@@ -56,6 +67,12 @@ def min_cycle(G):
                         if cycle_value < min_val:  # jeżeli wartość cyklu jest najmniejsza do tej pory
                             min_val = cycle_value
                             end_path = path(parent, u, v)  # zapisuję trasę końcową
+                            min_len = len(end_path)
+                        elif cycle_value == min_val:  # jezeli cykl znaleziony jest takiej samej wagi co minimalny
+                            test_path = path(parent, u, v)
+                            if len(test_path) < min_len:  # to biorę ten krótszy
+                                end_path = test_path
+                                min_len = len(test_path)
                     if d[v] > d[u] + G[u][v]:  # standardowa relakasacja krawędzi w Dijkstrze
                         d[v] = d[u] + G[u][v]
                         parent[v] = u
@@ -64,6 +81,7 @@ def min_cycle(G):
     n = len(G)
     min_val = float('inf')
     end_path = []
+    min_len = float('inf')
 
     for i in range(n):  # dla każdego wierzchołka uruchamiam Dijkstrę
         dijkstra(G, i)  # wykonuje dijkstrę ze startem z wierzchołka i
@@ -82,7 +100,7 @@ G = [[-1, 2, -1, -1, 1],
 
 LEN = 7
 
-GG = deepcopy(G2)
+GG = deepcopy(G)
 cycle = min_cycle(GG)
 
 print("Cykl :", cycle)
