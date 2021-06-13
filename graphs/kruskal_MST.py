@@ -1,5 +1,8 @@
 # algorytm kruskala
 
+
+# E LOG V
+
 class Node:
     def __init__(self):
         self.rank = 0

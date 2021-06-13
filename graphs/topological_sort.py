@@ -26,8 +26,7 @@ def TS(G):
 
     return res
 
-
-def createadjmatrix(L):  # stworz macierz sąsiedztwa bazując na liscie krawedzi
+def createAdjMatrix(L):  # stworz macierz sąsiedztwa bazując na liscie krawedzi
     n = -1
     for i in range(len(L)):
         n = max(L[i][0], L[i][1], n)

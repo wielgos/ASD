@@ -5,12 +5,9 @@ def is_connected(G):
         for v in range(len(G)):
             if G[u][v] == 1 and not visited[v]:
                 DFSvisit(G, v)
-
     n = len(G)
     visited = [False] * n
-
     DFSvisit(G, 0)
-
     for i in range(n):
         if not visited[i]:
             return False

@@ -25,9 +25,32 @@ def bellmanford(G, s):  # G to macierz sąsiedztwa
         for v in range(n):
             if G[u][v] is not None:
                 if d[v] > d[u] + G[u][v]:
-                    return d, parent, True
+                    return False  # not correct
 
-    return d, parent, False  # false - nie znaleziono ujemnego cyklu
+    return d, parent, True  # correct
+
+
+def bellmanford2(G, s):  # G to lista sasiedztwa
+    def relax(u, v, w):
+        if d[v] > d[u] + w:
+            d[v] = d[u] + w
+            parent[v] = u
+
+    n = len(G)
+    d = [float('inf')] * n
+    parent = [None] * n
+    d[s] = 0
+
+    for i in range(n - 1):
+        for u in range(n):
+            for v, w in G[u]:
+                relax(u, v, w)
+    for u in range(n):
+        for v, w in G[u]:
+            if d[v] > d[u] + w:
+                return False
+
+    return d, parent  # false - nie znaleziono ujemnego cyklu
 
 
 def path(parent, s):
@@ -52,9 +75,10 @@ if __name__ == '__main__':
           [2, None, 1, -3],
           [4, 1, None, None],
           [None, None, None, None]]
-    d, p, b = bellmanford(G3, 0)
-    print(d[3])
-    print(d)
-    print(p)
-    print(b)
-    print(path(p, 3))
+    G1 = [[(1, 4), (3, 5)], [(3, 5)], [(1, -10)], [(2, 3)]]
+    s1 = 0
+    print(bellmanford2(G1, s1))
+
+    G2 = [[(1, 6), (2, 5), (3, 5)], [(4, -1)], [(1, -2), (4, 1)], [(2, -2), (5, -1)], [(6, 3)], [(6, 3)], []]
+    s2 = 0
+    print(bellmanford2(G2, s2))

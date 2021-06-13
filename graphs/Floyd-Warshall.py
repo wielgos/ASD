@@ -3,6 +3,7 @@ from collections import deque
 
 # floyd warshall
 # graf nie moze zawierać ujemnych cykli
+# graf w postaci macierzowej
 # najkrotsza sciezka miedzy dowolna para wierzcholkow
 # krawedzie zarowno dodatnie jak i ujemne
 # O(V^3)

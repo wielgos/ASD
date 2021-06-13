@@ -21,7 +21,9 @@ def sss(G):
     visited = [False] * n
     process = [[-1, i] for i in range(n)]
     time = 0
-    DFSvisit(G, 0)
+    for i in range(n):
+        if not visited[i]:
+            DFSvisit(G, i)
 
     visited = [False] * n
     assigned = [-1] * n
