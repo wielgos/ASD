@@ -32,16 +32,11 @@ def dijkstra(G, s):  # G to macierz sąsiedztwa
 
 
 def path(parent, s):
-    path = deque()
-    len = 0
+    path = []
     while s is not None:
         path.append(s)
         s = parent[s]
-        len += 1
-    pathL = [0] * len
-    for i in range(len):
-        pathL[i] = path.pop()
-    return pathL
+    return path[::-1]
 
 
 if __name__ == '__main__':

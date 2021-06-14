@@ -11,6 +11,7 @@ class BSTNode:
         self.left = None
         self.right = None
         self.parent = None
+        self.remain = 1
 
 
 def find(root, key):
@@ -30,8 +31,10 @@ def insert(root, key):
     while root is not None:
         prev = root
         if key > root.key:
+            root.remain += 1
             root = root.right
         elif key < root.key:
+            root.remain += 1
             root = root.left
         else:
             return sroot  # FALSE NOT INSERTED
@@ -46,6 +49,12 @@ def insert(root, key):
     return sroot  # TRUE INSERTED SOME KEY
 
 
+def fix_up(node):
+    node.remain -= 1
+    if node.parent is not None:
+        fix_up(node.parent)
+
+
 def remove(root, key):
     node = find(root, key)
     if node is None:
@@ -55,8 +64,10 @@ def remove(root, key):
             return None  # jedyny element w drzewie został usuniety
         if node.key < node.parent.key:
             node.parent.left = None
+            fix_up(node.parent)
         else:
             node.parent.right = None
+            fix_up(node.parent)
     elif node.left is not None and node.right is None:
         if node.parent is None:
             node.left.parent = None
@@ -64,9 +75,11 @@ def remove(root, key):
         if node.key > node.parent.key:
             node.parent.right = node.left
             node.left.parent = node.parent
+            fix_up(node.parent)
         else:
             node.parent.left = node.left
             node.left.parent = node.parent
+            fix_up(node.parent)
     elif node.left is None and node.right is not None:
         if node.parent is None:
             node.right.parent = None
@@ -74,9 +87,11 @@ def remove(root, key):
         if node.key > node.parent.key:
             node.parent.right = node.right
             node.right.parent = node.parent
+            fix_up(node.parent)
         else:
             node.parent.left = node.right
             node.right.parent = node.parent
+            fix_up(node.parent)
     else:
         # szukamy następnika i wstawiamy w miejsce node'a
         nast = node.right
@@ -84,10 +99,11 @@ def remove(root, key):
         while nast.left is not None:
             flag = True
             nast = nast.left
-
         if flag:
             nast.parent.left = None
+        fix_up(nast.parent)
         nast.left = node.left
+        nast.remain = node.remain
         nast.parent = node.parent
         nast.right = node.right
         if node.parent is not None:
@@ -172,10 +188,23 @@ def merge_trees(tab):  # k-trees O(nk*logk)
     return tree_build(L, 0, len(L) - 1, None)
 
 
+def get_remain(node):
+    return 0 if node is None else node.remain
+
+
+def k_elem(node, k):
+    if k == get_remain(node.left) + 1:
+        return node
+    elif k <= get_remain(node.left):
+        return k_elem(node.left, k)
+    elif k > get_remain(node) - get_remain(node.right):
+        return k_elem(node.right, k - get_remain(node.left) - 1)
+
+
 def printInorder(root):
     if root:
         printInorder(root.left)
-        print(root.key, end=" "),
+        print(root.remain, end=" "),
         printInorder(root.right)
 
 
@@ -189,10 +218,6 @@ def printInorder(root):
 #     r2 = insert(r2, i + 10)
 #     r3 = insert(r3, i + 20)
 #     r4 = insert(r4, i + 30)
-#
-# tab = [r1, r2, r3, r4]
-#
-# printInorder(merge_trees(tab))
 
 r1 = None
 r1 = insert(r1, 10)
@@ -205,3 +230,6 @@ printInorder(r1)
 r1 = remove(r1, 5)
 print()
 printInorder(r1)
+print()
+for i in range(1, 6):
+    print(k_elem(r1, i).key)
