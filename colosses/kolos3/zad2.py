@@ -12,7 +12,7 @@
 # Złożoność czasowa: O(n) - musimy przejść po node'ach w drzewie
 # Złożoność pamięciowa: O(log n) - na stosie rekurencji będzie maksymalnie log(n), zakładam drzewo zbalansowane
 
-from colosses.zad2testy import runtests
+from colosses.kolos3.zad2testy import runtests
 
 
 class BNode:

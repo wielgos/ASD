@@ -1,4 +1,4 @@
-from colosses.przekatna_w_grafietesty import runtests
+from colosses.kkolos5.przekatna_w_grafietesty import runtests
 
 
 def przekatna_w_grafie(G) -> int:

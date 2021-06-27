@@ -24,6 +24,12 @@ def BFS(G, s):  # G to macierz sąsiedztwa
                     Q.append(v)
     return visited, d, parent
 
+def path(parent, s):  # funkcja zwracająca ścieżke
+    path = []
+    while s!=-1:
+        path.append(s)
+        s = parent[s]
+    return path[::-1]
 
 def createadjmatrix(L):  # stworz macierz sąsiedztwa bazując na liscie krawedzi
     n = -1
@@ -49,6 +55,5 @@ if __name__ == '__main__':
     # LADJ to listy sąsiedztwa
     print()
     v, d, p = BFS(M, 0)
-    print(v)
-    print(d)
+    print(path(p, 4))
     print(p)

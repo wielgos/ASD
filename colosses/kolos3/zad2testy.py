@@ -46,7 +46,7 @@ def runtests(f):
     problems_count = 0
     for i, x in enumerate(TESTS):
         print()
-        print(f"--- (test #{i+1}) ----------------------")
+        print(f"--- (test #{i + 1}) ----------------------")
         Tr = createtree(x[0])
         v = f(Tr)
         print("Dane wejściowe", x[0])

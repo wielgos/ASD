@@ -36,5 +36,5 @@ def szukaj_znajomosci(G, U, h):
     return maks[0]
 
 
-from colosses.szukajznajomosciXDtesty import runtests
+from colosses.kkolos5.szukajznajomosciXDtesty import runtests
 runtests(szukaj_znajomosci)

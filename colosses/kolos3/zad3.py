@@ -20,8 +20,8 @@
 #                        2. O(V^2) Zbudowanie grafu na którym puścimy max-flow
 #                        3. O(VE^2) Algorytm Edmonsa-Karpa (maxflow)
 #                        --> Finalna złożoność to O(VE^2 + V^2 + V^3) = O(VE^2)
-from colosses.zad3testy import runtests
-from colosses.zad3EK import edmonds_karp
+from colosses.kolos3.zad3testy import runtests
+from colosses.kolos3.zad3EK import edmonds_karp
 
 
 def floydwarshall(G):  # G to macierz sąsiedztwa, algorytm z wykładu

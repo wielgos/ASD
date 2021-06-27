@@ -50,7 +50,7 @@ def bellmanford2(G, s):  # G to lista sasiedztwa
             if d[v] > d[u] + w:
                 return False
 
-    return d, parent  # false - nie znaleziono ujemnego cyklu
+    return d, parent  # false -znaleziono ujemnego cyklu, algorytm wadliwy
 
 
 def path(parent, s):

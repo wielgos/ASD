@@ -10,17 +10,15 @@
 # Złożoność algorytmu O(V^3)
 # *nie udało mi się zaimplementować do końca algorytmu, błąd przewiduję, że jest w funkcji check()
 
-from colosses.zad1testy import runtests
+from colosses.kolos3.zad1testy import runtests
 from collections import deque
 
 
 # mam wrażenie, że warunek sprawdzający jest źle
 def check(x1, y1, x2, y2, d, M, S):  # warunek sprawdzający i łączący dane wierzchołki-krotki
-    if M[x1][x2] == 0:
+    if M[x1][x2] != 0 and M[y1][y2] != 0 and x1 == y2 and x2 == y1:
         return False
-    if M[y1][y2] == 0:
-        return False
-    if S[x2][y2] >= d:
+    if S[x1][y1] >= d and S[x2][y2] >= d and M[x1][x2] != 0 and M[y1][y2] != 0:
         return True
     return False
 
@@ -55,6 +53,7 @@ def floydwarshall(G):  # G to macierz sąsiedztwa, algorytm z wykładu
         for v in range(n):
             if G[u][v] != 0:
                 S[u][v] = G[u][v]
+        S[u][u] = 0
 
     for t in range(1, n):
         for u in range(n):
@@ -65,10 +64,10 @@ def floydwarshall(G):  # G to macierz sąsiedztwa, algorytm z wykładu
     return S
 
 
-def path(parent, s):  # funkcja zwracająca ścieżke
+def path(parent, s, krotki):  # funkcja zwracająca ścieżke
     path = []
-    while s is not None:
-        path.append(s)
+    while s != -1:
+        path.append(krotki[s])
         s = parent[s]
     return path[::-1]
 
@@ -79,20 +78,33 @@ def keep_distance(M, x, y, d):
     k = n ** 2
     G = [[0] * k for _ in range(k)]
     krotki = []
+    start = -1
+    end = -1
     for i in range(n):
         for j in range(n):
+            if i == x and j == y:
+                start = len(krotki)
+            if i == y and j == x:
+                end = len(krotki)
             krotki.append((i, j))
-    print(krotki)
+        M[i][i] = 1
+    # print(krotki)
     for i in range(len(krotki)):
         for j in range(len(krotki)):
+            if i == j:
+                continue
             x1 = krotki[i][0]
             y1 = krotki[i][1]
             x2 = krotki[j][0]
             y2 = krotki[j][1]
             if check(x1, y1, x2, y2, d, M, S):
                 G[i][j] = 1
-    parent = BFS(G, x)
-    return path(parent, x)
+                # print(krotki[i],krotki[j])
+    parent = BFS(G, start)
+    # print(start, krotki[start])
+    # print(end, krotki[end])
+    # print(parent)
+    return path(parent, end, krotki)
 
 
 runtests(keep_distance)
